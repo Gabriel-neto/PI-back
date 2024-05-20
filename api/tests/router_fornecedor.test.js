@@ -17,4 +17,10 @@ describe('API CRUD de Fornecedores', () => {
         expect(response.type).toBe("application/json")
         id = response.body.length > 0 ? response.body[0]._id.toString() : null
     })
+
+    test("Deve retornar 200 e um JSON no GET /fornecedor/id", async() => {
+        const response = await request.get(`/fornecedor/${id}`)
+        expect(response.status).toBe(200)
+        expect(response.type).toBe("application/json")
+    })
 }); 
