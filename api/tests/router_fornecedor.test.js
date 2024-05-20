@@ -73,4 +73,10 @@ describe("API CRUD de Fornecedores", () => {
     expect(response.status).toBe(404);
     expect(response.type).toBe("application/json");
   });
+
+  test('Deve retornar 422 e um JSON? no PUT /fornecedor', async () => {
+    const response = await request.put(`/fornecedor/${id}`).send({});
+    expect(response.status).toBe(422);
+    expect(response.type).toBe("application/json");
+});
 });
