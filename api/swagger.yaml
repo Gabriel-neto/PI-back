@@ -1,7 +1,76 @@
 openapi: 3.0.0
 info:
-  title:
-  version:
+  title: API CRUD de Fornecedores
+  description: API para realizar operações CRUD em fornecedores.
+  version: 1.0.0
 tags:
+  - fornecedor
 paths:
-components: 
+  /fornecedor:
+    get:
+      tags:
+        - fornecedor
+      summary: Retorna uma lista de fornecedores.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FornecedorInput'
+        400:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FornecedorInput'
+        404:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FornecedorInput'
+
+components:
+  schemas:
+    Fornecedor:
+      type: object
+      properties:
+        _id:
+          type: string
+        nome:
+          type: string
+        empresa:
+          type: string
+        cnpj:
+          type: string
+        email:
+          type: string
+        telefone:
+          type: string
+      required:
+        - nome
+        - empresa
+        - cnpj
+        - email
+        - telefone
+
+    FornecedorInput:
+      type: object
+      properties:
+        nome:
+          type: string
+        empresa:
+          type: string
+        cnpj:
+          type: string
+        email:
+          type: string
+        telefone:
+          type: string
+      required:
+        - nome
+        - empresa
+        - cnpj
+        - email
+        - telefone
