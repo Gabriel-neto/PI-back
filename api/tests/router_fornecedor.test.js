@@ -6,6 +6,14 @@ const request = supertest(app);
 
 let id = null
 
+const jsonFornecedor = {
+    nome: "Eduardo",
+    empresa: "Teste",
+    cnpj: "11.111.111/0001-11",
+    email: "teste@teste.com",
+    telefone: "61 9 3333-3333",
+}
+
 describe('API CRUD de Fornecedores', () => {
     
     /*
@@ -33,6 +41,11 @@ describe('API CRUD de Fornecedores', () => {
     /*
     * Rotas POST
     */
-
+    test("Deve retornar 201 e um JSON no POST /fornecedor", async() => {
+        const response = await request.post("/fornecedor").send(jsonFornecedor)
+        expect(response.status).toBe(201)
+        expect(response.type).toBe("application/json")
+        id = id ?? null
+    })
 
 }); 
