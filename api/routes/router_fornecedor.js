@@ -6,4 +6,5 @@ const router = express.Router();
 
 router.post('/', controllerFornecedor.validarDados, controllerFornecedor.criarFornecedor)
 
+router.get('/', controllerFornecedor.buscarFornecedores)
 module.exports = router;

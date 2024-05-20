@@ -14,6 +14,11 @@ const validarDados = async (req, res, next) => {
   }
 };
 
+const buscarFornecedores = async (req, res) => {
+  const fornecedores = await Fornecedor.find({});
+  res.json(fornecedores);
+};
+
 const criarFornecedor = async (req, res) => {
   const fornecedor = await Fornecedor.create(req.body);
   res.status(201).json(fornecedor);
@@ -22,4 +27,5 @@ const criarFornecedor = async (req, res) => {
 module.exports = {
   validarDados,
   criarFornecedor,
+  buscarFornecedores,
 };
