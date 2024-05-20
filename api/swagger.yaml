@@ -83,6 +83,7 @@ paths:
     put:
       tags:
         - fornecedor
+      summary: Edita o fornecedor com base no ID especificado.
       parameters:
         - in: path
           name: id
@@ -116,6 +117,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Mensagem'
     delete:
+      summary: Deleta um fornecedor com base no ID especificado.
       tags:
         - fornecedor
       parameters:
