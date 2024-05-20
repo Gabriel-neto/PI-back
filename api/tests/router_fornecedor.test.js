@@ -90,7 +90,9 @@ describe("API CRUD de Fornecedores", () => {
   });
 
   test("Deve retornar 404 no DELETE /fornecedor/id", async () => {
-    const response = await request.delete(`/fornecedor/6628518ffa69592ab3c3e2c2`);
+    const response = await request.delete(
+      `/fornecedor/6628518ffa69592ab3c3e2c2`
+    );
     expect(response.status).toBe(404);
     expect(response.type).toBe("application/json");
   });
