@@ -115,6 +115,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
+    delete:
+      tags:
+        - fornecedor
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          content:
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
 components:
   schemas:
     Fornecedor:
