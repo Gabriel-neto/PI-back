@@ -16,5 +16,5 @@ describe('API CRUD de Fornecedores', () => {
         expect(response.status).toBe(200)
         expect(response.type).toBe("application/json")
         id = response.body.length > 0 ? response.body[0]._id.toString() : null
-    }) 
-});
+    })
+}); 
