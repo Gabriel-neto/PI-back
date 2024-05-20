@@ -1,3 +1,5 @@
-function acao(req, res) { }
+const Produto = require("../models/model_produto");
+const mongoose = require("mongoose");
 
-module.exports = { acao };
+
+module.exports = { criar };
