@@ -80,5 +80,18 @@ describe("API CRUD de Fornecedores", () => {
     expect(response.type).toBe("application/json");
   });
 
-  
+  /*
+   * Rotas DELETE
+   */
+  test("Deve retornar 204 no DELETE /fornecedor/id", async () => {
+    const response = await request.delete(`/fornecedor/${id}`);
+    expect(response.status).toBe(204);
+    expect(response.type).toBe("application/json");
+  });
+
+  test("Deve retornar 404 no DELETE /fornecedor/id", async () => {
+    const response = await request.delete(`/fornecedor/${id}`);
+    expect(response.status).toBe(404);
+    expect(response.type).toBe("application/json");
+  });
 });
