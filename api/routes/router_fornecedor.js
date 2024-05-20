@@ -10,4 +10,6 @@ router.get('/', controllerFornecedor.buscarFornecedores)
 
 router.get('/:id', controllerFornecedor.buscarDadosFornecedor, controllerFornecedor.buscarFornecedor)
 
+router.put('/:id', controllerFornecedor.buscarDadosFornecedor, controllerFornecedor.validarDados, controllerFornecedor.atualizarFornecedor)
+
 module.exports = router;

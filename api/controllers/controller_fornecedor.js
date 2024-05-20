@@ -33,15 +33,21 @@ const buscarDadosFornecedor = async (req, res, next) => {
   }
 };
 
-const buscarFornecedor = async(req, res) => {
-    const id = new mongoose.Types.ObjectId(req.params.id);
-    const fornecedor = await Fornecedor.findById(id);
-    res.json(fornecedor);
-}
+const buscarFornecedor = async (req, res) => {
+  const id = new mongoose.Types.ObjectId(req.params.id);
+  const fornecedor = await Fornecedor.findById(id);
+  res.json(fornecedor);
+};
 
 const criarFornecedor = async (req, res) => {
   const fornecedor = await Fornecedor.create(req.body);
   res.status(201).json(fornecedor);
+};
+
+const atualizarFornecedor = async (req, res) => {
+  const id = new mongoose.Types.ObjectId(req.params.id);
+  const fornecedor = await Fornecedor.findOneAndUpdate({ _id: id });
+  res.json(fornecedor);
 };
 
 module.exports = {
@@ -50,4 +56,5 @@ module.exports = {
   buscarFornecedores,
   buscarDadosFornecedor,
   buscarFornecedor,
+  atualizarFornecedor,
 };

@@ -5,7 +5,7 @@ const schema = new mongoose.Schema({
         type: String,
         trim: true,
         uppercase: false,
-        //required: true
+        required: true
     },
     empresa: {
         type: String,
