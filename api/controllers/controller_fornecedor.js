@@ -46,13 +46,13 @@ const criarFornecedor = async (req, res) => {
 
 const atualizarFornecedor = async (req, res) => {
   const id = new mongoose.Types.ObjectId(req.params.id);
-  const fornecedor = await Fornecedor.findOneAndUpdate({ _id: id });
+  const fornecedor = await Fornecedor.findOneAndUpdate({ _id: id }, req.body);
   res.json(fornecedor);
 };
 
 const removerFornecedor = async (req, res) => {
     const id = new mongoose.Types.ObjectId(req.params.id);
-    const fornecedor = await Fornecedor.findByIdAndDelete(id);
+    await Fornecedor.findByIdAndDelete(id);
     res.status(204).end();
 }
 
