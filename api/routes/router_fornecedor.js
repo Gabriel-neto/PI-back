@@ -7,4 +7,7 @@ const router = express.Router();
 router.post('/', controllerFornecedor.validarDados, controllerFornecedor.criarFornecedor)
 
 router.get('/', controllerFornecedor.buscarFornecedores)
+
+router.get('/:id', controllerFornecedor.buscarDadosFornecedor, controllerFornecedor.buscarFornecedor)
+
 module.exports = router;

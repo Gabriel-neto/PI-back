@@ -10,7 +10,7 @@ const validarDados = async (req, res, next) => {
     await fornecedor.validate();
     next();
   } catch (e) {
-    res.status(422).json({ msg: "Dados do produto invalido." });
+    res.status(422).json({ msg: "Dados do fornecedor invalido." });
   }
 };
 
@@ -18,6 +18,26 @@ const buscarFornecedores = async (req, res) => {
   const fornecedores = await Fornecedor.find({});
   res.json(fornecedores);
 };
+
+const buscarDadosFornecedor = async (req, res, next) => {
+  try {
+    const id = new mongoose.Types.ObjectId(req.params.id);
+    const fornecedor = await Fornecedor.findById(id);
+    if (fornecedor) {
+      next();
+    } else {
+      res.status(404).json({ msg: "Fornecedor não encontrado." });
+    }
+  } catch (e) {
+    res.status(400).json({ msg: "ID invalido." });
+  }
+};
+
+const buscarFornecedor = async(req, res) => {
+    const id = new mongoose.Types.ObjectId(req.params.id);
+    const fornecedor = await Fornecedor.findById(id);
+    res.json(fornecedor);
+}
 
 const criarFornecedor = async (req, res) => {
   const fornecedor = await Fornecedor.create(req.body);
@@ -28,4 +48,6 @@ module.exports = {
   validarDados,
   criarFornecedor,
   buscarFornecedores,
+  buscarDadosFornecedor,
+  buscarFornecedor,
 };
