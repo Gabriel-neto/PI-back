@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 const Fornecedor = require("../models/model_fornecedor");
 
-async function validarDados(req, res, next) {
+/**
+ * Middleware para validar os dados do fornecedor.
+ */
+const validarDados = async (req, res, next) => {
   const fornecedor = new Fornecedor(req.body);
   try {
     await fornecedor.validate();
@@ -11,4 +14,9 @@ async function validarDados(req, res, next) {
   }
 }
 
-module.exports = { validarDados };
+const criarFornecedor = async (req, res) => {
+    const fornecedor = await Fornecedor.create(req.body)
+    res.status(201).json(fornecedor)
+}
+
+module.exports = { validarDados, criarFornecedor };
