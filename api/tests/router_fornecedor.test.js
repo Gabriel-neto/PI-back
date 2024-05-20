@@ -23,4 +23,16 @@ describe('API CRUD de Fornecedores', () => {
         expect(response.status).toBe(200)
         expect(response.type).toBe("application/json")
     })
+
+    test("Deve retornar 404 e um JSON no GET /fornecedor/id", async() => {
+        const response = await request.get(`/fornecedor/6628518ffa69592ab3c3e2c9`)
+        expect(response.status).toBe(404)
+        expect(response.type).toBe("application/json")
+    })
+
+    /*
+    * Rotas POST
+    */
+
+
 }); 
