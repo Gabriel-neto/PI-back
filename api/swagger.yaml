@@ -30,7 +30,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FornecedorInput'
-
+    post:
+      tags:
+        - fornecedor
+      summary: Cadastra um fornecedor.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FornecedorInput'
+      responses:
+        201:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FornecedorInput'
+        422:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FornecedorInput'
 components:
   schemas:
     Fornecedor:
