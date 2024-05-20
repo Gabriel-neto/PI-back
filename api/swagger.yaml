@@ -93,7 +93,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Fornecedor'
+              $ref: '#/components/schemas/FornecedorInput'
       responses:
         200:
           content:
