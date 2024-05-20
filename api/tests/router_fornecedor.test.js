@@ -56,8 +56,8 @@ describe("API CRUD de Fornecedores", () => {
   /*
    * Rotas PUT
    */
-  test("Deve retornar 200 e um JSON no PUT /forncedor/id", async () => {
-    const response = await request.put(`/forncedor/${id}`).send({
+  test("Deve retornar 200 e um JSON no PUT /fornecedor/id", async () => {
+    const response = await request.put(`/fornecedor/${id}`).send({
       nome: "Teste PUT",
       empresa: "Teste PUT",
       cnpj: "22.222.222/0002-22",
@@ -65,6 +65,12 @@ describe("API CRUD de Fornecedores", () => {
       telefone: "61 9 3333-3333",
     });
     expect(response.status).toBe(200);
+    expect(response.type).toBe("application/json");
+  });
+
+  test("Deve retornar 404 e um JSON no PUT /fornecedor/id", async () => {
+    const response = await request.put("/fornecedor/6628518ffa69592ab3c3e2c1");
+    expect(response.status).toBe(404);
     expect(response.type).toBe("application/json");
   });
 });
