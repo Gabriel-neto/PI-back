@@ -12,4 +12,6 @@ router.get('/:id', controllerFornecedor.buscarDadosFornecedor, controllerFornece
 
 router.put('/:id', controllerFornecedor.buscarDadosFornecedor, controllerFornecedor.validarDados, controllerFornecedor.atualizarFornecedor)
 
+router.delete('/:id', controllerFornecedor.buscarDadosFornecedor, controllerFornecedor.removerFornecedor)
+
 module.exports = router;
