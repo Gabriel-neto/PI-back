@@ -7,29 +7,6 @@ tags:
   - fornecedor
 paths:
   /fornecedor:
-    get:
-      tags:
-        - fornecedor
-      summary: Retorna uma lista de fornecedores.
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FornecedorInput'
-        400:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FornecedorInput'
-        404:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FornecedorInput'
     post:
       tags:
         - fornecedor
@@ -52,7 +29,57 @@ paths:
           content:
             application/json:
               schema:
+                $ref: '#/components/schemas/Mensagem'
+    get:
+      tags:
+        - fornecedor
+      summary: Retorna uma lista de fornecedores.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
                 $ref: '#/components/schemas/FornecedorInput'
+        400:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+  /fornecedor/{id}:
+    get:
+      summary: Busca um fornecedor pelo ID.
+      tags:
+        - fornecedor
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fornecedor'
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
 components:
   schemas:
     Fornecedor:
@@ -96,3 +123,8 @@ components:
         - cnpj
         - email
         - telefone
+    Mensagem:
+      type: object
+      properties:
+        msg:
+          type: string
