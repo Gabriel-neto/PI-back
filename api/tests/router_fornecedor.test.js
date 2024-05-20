@@ -48,4 +48,10 @@ describe('API CRUD de Fornecedores', () => {
         id = id ?? null
     })
 
+    test("Deve retornar 422 e um JSON no POST /fornecedor", async() => {
+        const response = await request.post("/fornecedor").send({})
+        expect(response.status).toBe(422)
+        expect(response.type).toBe("application/json")
+    })
+
 }); 
