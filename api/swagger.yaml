@@ -4,4 +4,40 @@ info:
   version:
 tags:
 paths:
+  /produtos:
+    post:
+      tags:
+        - produtos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
 components: 
+  schemas:
+  ArrayOfProdutos:
+    type: array
+    items:
+      $ref: '#components/schemas/Produto'
+    Produto:
+      type: object
+      properties:
+        nome:
+          type: string
+        grupo:
+          type: string
+        preco:
+          type: number
+        quantidade:
+          type: number
+    Mensagem:
+      type: object
+      properties:
+        msg:
+          type: string
