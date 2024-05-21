@@ -19,4 +19,10 @@ describe("API", () => {
     id = response.body._id;
     console.log(id);
   });
+  
+  test("Deve retornar 422 e um JSON no POST /produtos", async () => {
+    const response = await request.post("/produtos").send({});
+    expect(response.status).toBe(422);
+    expect(response.type).toBe("application/json");
+  });
 });
