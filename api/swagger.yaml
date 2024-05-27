@@ -19,6 +19,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Produto'
+        422:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+    get:
+      tags:
+        - produtos
+      responses:
+        200:
+          contents:
+            application/json:
+              schema:
+                $ref: '#components/schemas/ArrayOfProdutos'              
 components: 
   schemas:
   ArrayOfProdutos:
