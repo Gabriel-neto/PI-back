@@ -6,6 +6,7 @@ tags:
 paths:
   /produtos:
     post:
+      summary: Cria um novo produto 
       tags:
         - produtos
       requestBody:
@@ -25,6 +26,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Mensagem'
     get:
+      summary: Lista todos os produtos
       tags:
         - produtos
       responses:
@@ -32,7 +34,29 @@ paths:
           contents:
             application/json:
               schema:
-                $ref: '#components/schemas/ArrayOfProdutos'              
+                $ref: '#components/schemas/ArrayOfProdutos'
+  /produtos/{id}:
+    get:
+      summary: Busca um produto pelo ID
+      tags:
+        - produtos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'            
 components: 
   schemas:
   ArrayOfProdutos:
