@@ -21,4 +21,4 @@ async function obterTodosProdutos(req, res) {
   res.json(produtos);
 }
 
-module.exports = { criar, validarDados, obterTodosProdutos };
+module.exports = { criar, validarDados, obterTodosProdutos, obterProduto, obterDadosProdutos };
