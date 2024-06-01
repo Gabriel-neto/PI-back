@@ -41,4 +41,10 @@ const obterProduto = async (req, res) => {
   res.json(produto);
 };
 
-module.exports = { criar, validarDados, obterTodosProdutos, obterProduto, obterDadosProdutos };
+const editarProduto = async (req, res) => {
+  const id = new mongoose.Types.ObjectId(req.params.id);
+  const produto = await Produto.findOneAndUpdate({ _id: id }, req.body);
+  res.json(produto);
+};
+
+module.exports = { criar, validarDados, obterTodosProdutos, obterProduto, obterDadosProdutos, editarProduto };

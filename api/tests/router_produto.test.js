@@ -54,7 +54,7 @@ describe("API", () => {
   });
 
   test("Deve retornar 404 e um JSON no PUT /produtos/id", async () => {
-    const response = await request.put("/produtos");
+    const response = await request.put("/produtos/664caccf72019672f4c16ffc");
     expect(response.status).toBe(404);
     expect(response.type).toBe("application/json");
   });
