@@ -56,7 +56,43 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Produto'            
+                $ref: '#/components/schemas/Produto'
+    put:
+      tags:
+        - produtos
+      summary: Edita o produto passando o ID
+      parameters:
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProdutoInput'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Produto'
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Mensagem'
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Mensagem'
+        422:
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Mensagem'                      
 components: 
   schemas:
   ArrayOfProdutos:
