@@ -54,14 +54,26 @@ describe("API", () => {
   });
 
   test("Deve retornar 404 e um JSON no PUT /produtos/id", async () => {
-    const response = await request.put("/produtos/664caccf72019672f4c16ffc");
+    const response = await request.put(`/produtos/664cd331dc5fff3`);
     expect(response.status).toBe(404);
     expect(response.type).toBe("application/json");
   });
 
-  test("Deve retornar 422 e um JSON? no PUT /produtos", async () => {
+  test("Deve retornar 422 e um JSON no PUT /produtos", async () => {
     const response = await request.put(`/produtos/${id}`).send({});
     expect(response.status).toBe(422);
+    expect(response.type).toBe("application/json");
+  });
+
+  test("Deve retornar 204 no DELETE /produto/id", async () => {
+    const response = await request.delete(`/produto/${id}`);
+    expect(response.status).toBe(204);
+    expect(response.type).toBe("");
+  });
+
+  test("Deve retornar 404 no DELETE /produto/id", async () => {
+    const response = await request.delete(`/produto/6628518ffa69592ab3c3e2c2`);
+    expect(response.status).toBe(404);
     expect(response.type).toBe("application/json");
   });
 });
