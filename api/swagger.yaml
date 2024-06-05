@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title:
+  title: API BlackBox - Produtos
   version:
 tags:
 paths:
@@ -8,7 +8,7 @@ paths:
     post:
       summary: Cria um novo produto 
       tags:
-        - produtos
+        - Cadastrar um novo produto
       requestBody:
         content:
           application/json:
@@ -28,7 +28,7 @@ paths:
     get:
       summary: Lista todos os produtos
       tags:
-        - produtos
+        - Listar todos os produtos cadastrados
       responses:
         200:
           contents:
@@ -39,7 +39,7 @@ paths:
     get:
       summary: Busca o produto passando o ID
       tags:
-        - produtos
+        - Listar um produtos especifico
       parameters:
         - in: path
           name: id
@@ -59,7 +59,7 @@ paths:
                 $ref: '#/components/schemas/Produto'
     put:
       tags:
-        - produtos
+        - Editar um produto
       summary: Edita o produto passando o ID
       parameters:
         - in: path
@@ -96,7 +96,7 @@ paths:
     delete:
       summary: Exclui o produto passando o ID
       tags:
-        - produtos
+        - Excluir um produto
       parameters:
         - in: path
           name: id
