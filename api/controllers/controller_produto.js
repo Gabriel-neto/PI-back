@@ -47,4 +47,18 @@ const editarProduto = async (req, res) => {
   res.json(produto);
 };
 
-module.exports = { criar, validarDados, obterTodosProdutos, obterProduto, obterDadosProdutos, editarProduto };
+const excluiProduto = async (req, res) => {
+  const id = new mongoose.Types.ObjectId(req.params.id);
+  await Produto.findByIdAndDelete(id);
+  res.status(204).end();
+};
+
+module.exports = {
+  criar,
+  validarDados,
+  obterTodosProdutos,
+  obterProduto,
+  obterDadosProdutos,
+  editarProduto,
+  excluiProduto,
+};

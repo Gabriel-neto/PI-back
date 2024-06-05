@@ -54,7 +54,7 @@ describe("API", () => {
   });
 
   test("Deve retornar 404 e um JSON no PUT /produtos/id", async () => {
-    const response = await request.put(`/produtos/664cd331dc5fff3`);
+    const response = await request.put(`/produtos/665119521635ba8069316e63`);
     expect(response.status).toBe(404);
     expect(response.type).toBe("application/json");
   });
@@ -66,13 +66,13 @@ describe("API", () => {
   });
 
   test("Deve retornar 204 no DELETE /produto/id", async () => {
-    const response = await request.delete(`/produto/${id}`);
+    const response = await request.delete(`/produtos/${id}`);
     expect(response.status).toBe(204);
     expect(response.type).toBe("");
   });
 
   test("Deve retornar 404 no DELETE /produto/id", async () => {
-    const response = await request.delete(`/produto/6628518ffa69592ab3c3e2c2`);
+    const response = await request.delete(`/produtos/66511d7df569018bf938b666`);
     expect(response.status).toBe(404);
     expect(response.type).toBe("application/json");
   });
