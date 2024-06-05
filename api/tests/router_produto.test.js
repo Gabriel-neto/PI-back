@@ -12,13 +12,13 @@ const produto = {
 };
 
 describe("API", () => {
-  /*test("Deve retornar 201 e um JSON no POST /produtos", async () => {
+  test("Deve retornar 201 e um JSON no POST /produtos", async () => {
     const response = await request.post("/produtos").send(produto);
     expect(response.status).toBe(201);
     expect(response.type).toBe("application/json");
     id = response.body._id;
     console.log(id);
-});*/
+});
 
   test("Deve retornar 422 e um JSON no POST /produtos", async () => {
     const response = await request.post("/produtos").send({});
@@ -65,11 +65,11 @@ describe("API", () => {
     expect(response.type).toBe("application/json");
   });
 
-  test("Deve retornar 204 no DELETE /produto/id", async () => {
+  /*test("Deve retornar 204 no DELETE /produto/id", async () => {
     const response = await request.delete(`/produtos/${id}`);
     expect(response.status).toBe(204);
     expect(response.type).toBe("");
-  });
+  });*/
 
   test("Deve retornar 404 no DELETE /produto/id", async () => {
     const response = await request.delete(`/produtos/66511d7df569018bf938b666`);

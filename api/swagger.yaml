@@ -37,7 +37,7 @@ paths:
                 $ref: '#components/schemas/ArrayOfProdutos'
   /produtos/{id}:
     get:
-      summary: Busca um produto pelo ID
+      summary: Busca o produto passando o ID
       tags:
         - produtos
       parameters:
@@ -62,11 +62,11 @@ paths:
         - produtos
       summary: Edita o produto passando o ID
       parameters:
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
       requestBody:
         content:
           application/json:
@@ -93,6 +93,24 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Mensagem'                      
+    delete:
+      summary: Exclui o produto passando o ID
+      tags:
+        - produtos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          content:
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
 components: 
   schemas:
   ArrayOfProdutos:
