@@ -34,7 +34,11 @@ const obter = async (req, res) => {
 const atualizar = async (req, res) => {
   const id = new mongoose.Types.ObjectId(req.params.id);
   const compra = await Compra.findByIdAndUpdate({_id: id}, req.body);
-  res.status(200).json(compra);
+  if (req.produto && req.preco){
+    res.status(200).json(compra);
+  } else {
+    res.status(422).json({msg: "dados invalidos"})
+  }
 };
 
 const remover = async (req,res) => {
