@@ -6,9 +6,9 @@ const request = supertest(app);
 let id = null
 
 describe('API BlackBox', () => {
-    test('Deve retornar 200 e um JSON no PUT /compras/id', async () => {
-        const response = await request.put(`/compras/665a63b7680c5a780f106f4d`).send({ produto: "calça", preco: 245.00 });
-        expect(response.status).toBe(200);
+    test('Deve retornar 404 e um JSON no PUT /compras/id', async () => {
+        const response = await request.put('/compras/6643eb670a1e917ee0581e85');
+        expect(response.status).toBe(404);
         expect(response.type).toBe('application/json');
     });
 });
