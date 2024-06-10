@@ -2,8 +2,16 @@ const mongoose = require('mongoose')
 const Compra = require('../models/model_compras')
 
 const criar = async (req, res) => {
-  const compra = await Compra.create(req.body)
-  res.status(201).json(compra)
+  try {
+    const compra = await Compra.create(req.body);
+    res.status(201).json(compra);
+} catch (error) {
+    if (error.name === 'ValidationError') {
+        res.status(422).json({ msg: 'dados invalidos', errors: error.errors });
+    } else {
+        res.status(500).json({ msg: 'Erro no servidor', error: error.message });
+    }
+}
 }
 
 const obterTodas = async (req, res) => {

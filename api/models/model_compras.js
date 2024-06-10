@@ -5,7 +5,7 @@ const compraSchema = new mongoose.Schema({
         type: String,
         trim: true,
         upperCase: true, 
-        required: true,
+        required: true
     },
     preco: {
         type: Number,
@@ -22,12 +22,12 @@ const compraSchema = new mongoose.Schema({
         type: String,
         trim: true,
         upperCase: true, 
-        required: true,
+        required: true
     },
     nf: {
         type: Number,
         trim: true,
-        required: true,
+        required: true
     }
 });
 
