@@ -49,6 +49,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Compra'
+  /compras/{id}:
+    get: 
+      tags:
+        - compras
+      parameters:
+        - in: path
+          type: string
+          name: id
+      responses:
+        200:
+          description: Consultar uma compra
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compra'
+        400:
+          description: Consulta errada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: Compra não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+
 components: 
   schemas:
     ArrayOfCompras:
