@@ -16,27 +16,45 @@ paths:
               $ref: '#/components/schemas/Compra'
       responses:
         201:
-          description: Operações relacionadas a compras
+          description: Cadastro de compra com sucesso
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Compra'
                   
         422:
-          description: Operações relacionadas a compras
+          description: Dados inválidos
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
         500:
-          description: Operações relacionadas a compras
+          description: Servidor não contactado
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
-          
+    get: 
+      tags:
+        - compras
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Compra'
+      responses:
+        200:
+          description: Consultar todas as compras
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compra'
 components: 
   schemas:
+    ArrayOfCompras:
+      type: array
+      items:
+        $ref: '#/components/schemas/Compra'
     Compra:
       type: object
       properties:
