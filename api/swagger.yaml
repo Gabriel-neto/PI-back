@@ -65,7 +65,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Compra'
         400:
-          description: Consulta errada
+          description: Id Inválido
           content:
             application/json:
               schema:
@@ -74,6 +74,43 @@ paths:
           description: Compra não encontrada
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+    put:
+      tags:
+        - compras
+      parameters:
+        - in: path
+          type: string
+          name: id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Compra'
+      responses:
+        200:
+          description: Compra atualizada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compra'
+        400:
+          description: Id Inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: Compra não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'        
+        422:
+          description: Dados inválidos
+          content:
+            appication/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
 
