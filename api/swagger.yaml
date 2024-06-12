@@ -113,6 +113,28 @@ paths:
             appication/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
+    delete:
+      tags:
+        - compras
+      parameters:
+        - in: path
+          type: string
+          name: id
+      responses:
+        204:
+          description: Compra Excluída
+        400:
+          description: Id Inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: Compra não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
 
 components: 
   schemas:
