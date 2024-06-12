@@ -1,7 +1,60 @@
 openapi: 3.0.0
 info:
-  title:
-  version:
+  title: API BlackBox
+  version: 0.0.1
 tags:
+  - name: compras
 paths:
+  /compras: 
+    post: 
+      tags:
+        - compras
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Compra'
+      responses:
+        201:
+          description: Operações relacionadas a compras
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compra'
+                  
+        422:
+          description: Operações relacionadas a compras
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        500:
+          description: Operações relacionadas a compras
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+          
 components: 
+  schemas:
+    Compra:
+      type: object
+      properties:
+        produto:
+          type: string
+        preco:
+          type: number
+        quantidade: 
+          type: number
+        data:
+          type: string
+          format: date
+        vendedor: 
+          type: string
+        nf: 
+          type: number
+    Mensagem:
+      type: object
+      properties:
+        msg:
+          type: string
