@@ -10,7 +10,7 @@ router.get('/',controllerCompras.obterTodas);
 
 router.get('/:id', controllerCompras.buscarPeloId, controllerCompras.obter);
 
-router.put('/:id', controllerCompras.buscarPeloId, controllerCompras.atualizar);
+router.put('/:id', controllerCompras.buscarPeloId, controllerCompras.validarDados, controllerCompras.atualizar);
 
 router.delete('/:id', controllerCompras.buscarPeloId, controllerCompras.remover)
 
