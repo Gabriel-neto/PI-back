@@ -1,6 +1,17 @@
 const mongoose = require('mongoose')
 const Compra = require('../models/model_compras')
 
+const validarDados = async (req, res, next) => {
+  const produto = new Compra(req.body);
+  try {
+      await produto.validate();
+      next();
+  } catch (err) {
+      res.status(422).json({ msg: 'Dados do produto invalidos' });
+  };
+
+};
+
 const criar = async (req, res) => {
   try {
     const compra = await Compra.create(req.body);
@@ -57,4 +68,4 @@ const remover = async (req,res) => {
 
 
 
-module.exports = { criar, obterTodas, obter, buscarPeloId, atualizar, remover };
+module.exports = { validarDados, criar, obterTodas, obter, buscarPeloId, atualizar, remover };

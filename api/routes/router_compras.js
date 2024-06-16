@@ -4,7 +4,7 @@ const controllerCompras = require('../controllers/controller_compras');
 
 const router = express.Router()
 
-router.post('/', controllerCompras.criar);
+router.post('/', controllerCompras.validarDados, controllerCompras.criar);
 
 router.get('/',controllerCompras.obterTodas);
 
