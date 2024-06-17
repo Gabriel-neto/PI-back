@@ -1,18 +1,19 @@
 const express = require('express');
 
 const controllerCompras = require('../controllers/controller_compras');
+const validarToken = require('../middlewares/auth')
 
 const router = express.Router()
 
-router.post('/', controllerCompras.validarDados, controllerCompras.criar);
+router.post('/', validarToken, controllerCompras.validarDados, controllerCompras.criar);
 
-router.get('/',controllerCompras.obterTodas);
+router.get('/', validarToken, controllerCompras.obterTodas);
 
-router.get('/:id', controllerCompras.buscarPeloId, controllerCompras.obter);
+router.get('/:id', validarToken, controllerCompras.buscarPeloId, controllerCompras.obter);
 
-router.put('/:id', controllerCompras.buscarPeloId, controllerCompras.validarDados, controllerCompras.atualizar);
+router.put('/:id', validarToken, controllerCompras.buscarPeloId, controllerCompras.validarDados, controllerCompras.atualizar);
 
-router.delete('/:id', controllerCompras.buscarPeloId, controllerCompras.remover)
+router.delete('/:id', validarToken, controllerCompras.buscarPeloId, controllerCompras.remover)
 
 
 module.exports = router;
