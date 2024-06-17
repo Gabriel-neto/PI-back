@@ -34,6 +34,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
     get: 
       tags:
         - compras
@@ -49,6 +51,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Compra'
+      security:
+       - JWTAuth : [] 
   /compras/{id}:
     get: 
       tags:
@@ -76,6 +80,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
     put:
       tags:
         - compras
@@ -113,6 +119,8 @@ paths:
             appication/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
     delete:
       tags:
         - compras
@@ -135,8 +143,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
 
 components: 
+  securitySchemes:
+    JWTAuth:
+      type: apiKey
+      in: header
+      name: Authorization
   schemas:
     ArrayOfCompras:
       type: array
