@@ -3,8 +3,147 @@ info:
   title: API BlackBox
   version: 0.0.1
 tags:
-  - name: compras
+  - fornecedor
+  - compras
 paths:
+  /fornecedor:
+    post:
+      tags:
+        - fornecedor
+      summary: Cadastra um fornecedor.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FornecedorInput'
+      responses:
+        201:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FornecedorInput'
+        422:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
+    get:
+      tags:
+        - fornecedor
+      summary: Retorna uma lista de fornecedores.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FornecedorInput'
+        400:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
+  /fornecedor/{id}:
+    get:
+      summary: Busca um fornecedor pelo ID.
+      tags:
+        - fornecedor
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fornecedor'
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
+    put:
+      tags:
+        - fornecedor
+      summary: Edita o fornecedor com base no ID especificado.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FornecedorInput'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fornecedor'
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        422:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+        - JWTAuth : [] 
+    delete:
+      summary: Deleta um fornecedor com base no ID especificado.
+      tags:
+        - fornecedor
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          content:
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+    security:
+       - JWTAuth : [] 
   /compras: 
     post: 
       tags:
@@ -146,7 +285,7 @@ paths:
       security:
        - JWTAuth : [] 
 
-components: 
+components:
   securitySchemes:
     JWTAuth:
       type: apiKey
@@ -178,3 +317,44 @@ components:
       properties:
         msg:
           type: string
+    Fornecedor:
+      type: object
+      properties:
+        _id:
+          type: string
+        nome:
+          type: string
+        empresa:
+          type: string
+        cnpj:
+          type: string
+        email:
+          type: string
+        telefone:
+          type: string
+      required:
+        - nome
+        - empresa
+        - cnpj
+        - email
+        - telefone
+
+    FornecedorInput:
+      type: object
+      properties:
+        nome:
+          type: string
+        empresa:
+          type: string
+        cnpj:
+          type: string
+        email:
+          type: string
+        telefone:
+          type: string
+      required:
+        - nome
+        - empresa
+        - cnpj
+        - email
+        - telefone
