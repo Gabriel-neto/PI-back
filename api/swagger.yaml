@@ -30,6 +30,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
     get:
       tags:
         - fornecedor
@@ -53,6 +55,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
   /fornecedor/{id}:
     get:
       summary: Busca um fornecedor pelo ID.
@@ -80,6 +84,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
     put:
       tags:
         - fornecedor
@@ -116,6 +122,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
+      security:
+        - JWTAuth : [] 
     delete:
       summary: Deleta um fornecedor com base no ID especificado.
       tags:
@@ -134,7 +142,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
+    security:
+       - JWTAuth : [] 
 components:
+  securitySchemes:
+      JWTAuth:
+        type: apiKey
+        in: header
+        name: Authorization
   schemas:
     Fornecedor:
       type: object
