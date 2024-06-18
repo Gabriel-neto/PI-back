@@ -11,6 +11,8 @@ var app = express();
 
 mongoose.connect(process.env.MONGODB_URL);
 
+mongoose.connect(process.env.MONGODB_URL);
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -19,4 +21,8 @@ app.use(cookieParser());
 app.use("/api-docs", routerApidocs);
 app.use("/produtos", routerProdutos);
 
+app.use('/api-docs', routerApiDocs);
+app.use('/compras', routerCompras);
+
 module.exports = app;
+
