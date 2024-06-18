@@ -1,10 +1,10 @@
 openapi: 3.0.0
 info:
-  title: API CRUD de Fornecedores
-  description: API para realizar operações CRUD em fornecedores.
-  version: 1.0.0
+  title: API BlackBox
+  version: 0.0.1
 tags:
   - fornecedor
+  - compras
 paths:
   /fornecedor:
     post:
@@ -144,13 +144,179 @@ paths:
                 $ref: '#/components/schemas/Mensagem'
     security:
        - JWTAuth : [] 
+  /compras: 
+    post: 
+      tags:
+        - compras
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Compra'
+      responses:
+        201:
+          description: Cadastro de compra com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compra'
+                  
+        422:
+          description: Dados inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        500:
+          description: Servidor não contactado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
+    get: 
+      tags:
+        - compras
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Compra'
+      responses:
+        200:
+          description: Consultar todas as compras
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compra'
+      security:
+       - JWTAuth : [] 
+  /compras/{id}:
+    get: 
+      tags:
+        - compras
+      parameters:
+        - in: path
+          type: string
+          name: id
+      responses:
+        200:
+          description: Consultar uma compra
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compra'
+        400:
+          description: Id Inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: Compra não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
+    put:
+      tags:
+        - compras
+      parameters:
+        - in: path
+          type: string
+          name: id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Compra'
+      responses:
+        200:
+          description: Compra atualizada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compra'
+        400:
+          description: Id Inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: Compra não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'        
+        422:
+          description: Dados inválidos
+          content:
+            appication/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
+    delete:
+      tags:
+        - compras
+      parameters:
+        - in: path
+          type: string
+          name: id
+      responses:
+        204:
+          description: Compra Excluída
+        400:
+          description: Id Inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: Compra não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
+
 components:
   securitySchemes:
-      JWTAuth:
-        type: apiKey
-        in: header
-        name: Authorization
+    JWTAuth:
+      type: apiKey
+      in: header
+      name: Authorization
   schemas:
+    ArrayOfCompras:
+      type: array
+      items:
+        $ref: '#/components/schemas/Compra'
+    Compra:
+      type: object
+      properties:
+        produto:
+          type: string
+        preco:
+          type: number
+        quantidade: 
+          type: number
+        data:
+          type: string
+          format: date
+        vendedor: 
+          type: string
+        nf: 
+          type: number
+    Mensagem:
+      type: object
+      properties:
+        msg:
+          type: string
     Fornecedor:
       type: object
       properties:
@@ -192,8 +358,3 @@ components:
         - cnpj
         - email
         - telefone
-    Mensagem:
-      type: object
-      properties:
-        msg:
-          type: string
