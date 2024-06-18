@@ -1,25 +1,30 @@
 const express = require("express");
 
 const controllerFornecedor = require("../controllers/controller_fornecedor");
-
+const validarToken = require('../middlewares/auth.js')
 const router = express.Router();
 
 router.post(
   "/",
+  validarToken,
   controllerFornecedor.validarDados,
   controllerFornecedor.criarFornecedor
 );
 
-router.get("/", controllerFornecedor.buscarFornecedores);
+router.get("/",
+  validarToken,
+  controllerFornecedor.buscarFornecedores);
 
 router.get(
   "/:id",
+  validarToken,
   controllerFornecedor.buscarDadosFornecedor,
   controllerFornecedor.buscarFornecedor
 );
 
 router.put(
   "/:id",
+  validarToken,
   controllerFornecedor.buscarDadosFornecedor,
   controllerFornecedor.validarDados,
   controllerFornecedor.atualizarFornecedor
@@ -27,6 +32,7 @@ router.put(
 
 router.delete(
   "/:id",
+  validarToken,
   controllerFornecedor.buscarDadosFornecedor,
   controllerFornecedor.removerFornecedor
 );
