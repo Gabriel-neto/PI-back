@@ -284,8 +284,6 @@ paths:
                 $ref: '#/components/schemas/Mensagem'
       security:
        - JWTAuth : [] 
-
-components:
   securitySchemes:
     JWTAuth:
       type: apiKey
