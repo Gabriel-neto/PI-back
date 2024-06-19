@@ -1,0 +1,520 @@
+openapi: 3.0.0
+info:
+  title: API BlackBox
+  version: 0.0.1
+tags:
+  - name: fornecedor
+  - name: compras
+paths:
+  /fornecedor:
+    post:
+      tags:
+        - fornecedor
+      summary: Cadastra um fornecedor.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArrayOfFornecedores'
+      responses:
+        201:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfFornecedores'
+        422:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
+    get:
+      tags:
+        - fornecedor
+      summary: Retorna uma lista de fornecedores.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfFornecedores'
+        400:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
+  /fornecedor/{id}:
+    get:
+      summary: Busca um fornecedor pelo ID.
+      tags:
+        - fornecedor
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fornecedor'
+        400:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
+    put:
+      tags:
+        - fornecedor
+      summary: Edita o fornecedor com base no ID especificado.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArrayOfFornecedores'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fornecedor'
+        400:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        422:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+        - JWTAuth : [] 
+    delete:
+      summary: Deleta um fornecedor com base no ID especificado.
+      tags:
+        - fornecedor
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+        - JWTAuth : [] 
+
+  /compras: 
+    post: 
+      tags:
+        - compras
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Compra'
+      responses:
+        201:
+          description: Cadastro de compra com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compra'
+                  
+        422:
+          description: Dados inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        500:
+          description: Servidor não contactado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
+    get: 
+      tags:
+        - compras
+      
+      responses:
+        200:
+          description: Consultar todas as compras
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compra'
+      security:
+       - JWTAuth : [] 
+  /compras/{id}:
+    get: 
+      tags:
+        - compras
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Consultar uma compra
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compra'
+        400:
+          description: Id Inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: Compra não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
+    put:
+      tags:
+        - compras
+      parameters:
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Compra'
+      responses:
+        200:
+          description: Compra atualizada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compra'
+        400:
+          description: Id Inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: Compra não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'        
+        422:
+          description: Dados inválidos
+          content:
+            appication/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
+    delete:
+      tags:
+        - compras
+      parameters:
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: id
+      responses:
+        204:
+          description: Compra Excluída
+        400:
+          description: Id Inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: Compra não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
+  /produtos:
+    post:
+      summary: Cria um novo produto 
+      tags:
+        - produto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+      responses:
+        201:
+          description: Produto não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+        422:
+          description: Produto não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
+    get:
+      summary: Lista todos os produtos
+      tags:
+        - produto
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/ArrayOfProdutos'
+      security:
+       - JWTAuth : [] 
+  /produtos/{id}:
+    get:
+      summary: Busca o produto passando o ID
+      tags:
+        - produto
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+        404:
+          description: Produto não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+      security:
+      - JWTAuth : [] 
+    put:
+      tags:
+        - produto
+      summary: Edita o produto passando o ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Produto'
+        400:
+          description: Produto não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Mensagem'
+        404:
+          description: Produto não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Mensagem'
+        422:
+          description: Produto não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Mensagem'
+      security:
+       - JWTAuth : []                   
+    delete:
+      summary: Exclui o produto passando o ID
+      tags:
+        - produto
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: Produto não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: Produto não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+      - JWTAuth : [] 
+components:
+  securitySchemes:
+    JWTAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+  schemas:
+    ArrayOfProdutos:
+      type: array
+      items:
+        $ref: '#components/schemas/Produto'
+    Produto:
+      type: object
+      properties:
+        nome:
+          type: string
+        grupo:
+          type: string
+        preco:
+          type: number
+        quantidade:
+          type: number
+    ArrayOfCompras:
+      type: array
+      items:
+        $ref: '#/components/schemas/Compra'
+    Compra:
+      type: object
+      properties:
+        produto:
+          type: string
+        preco:
+          type: number
+        quantidade: 
+          type: number
+        data:
+          type: string
+          format: date
+        vendedor: 
+          type: string
+        nf: 
+          type: number
+    ArrayOfFornecedores:
+      type: object
+      properties:
+        nome:
+          type: string
+        empresa:
+          type: string
+        cnpj:
+          type: string
+        email:
+          type: string
+        telefone:
+          type: string
+      required:
+        - nome
+        - empresa
+        - cnpj
+        - email
+        - telefone
+    Fornecedor:
+      type: object
+      properties:
+        _id:
+          type: string
+        nome:
+          type: string
+        empresa:
+          type: string
+        cnpj:
+          type: string
+        email:
+          type: string
+        telefone:
+          type: string
+      required:
+        - nome
+        - empresa
+        - cnpj
+        - email
+        - telefone
+    
+    Mensagem:
+        type: object
+        properties:
+          msg:
+            type: string
