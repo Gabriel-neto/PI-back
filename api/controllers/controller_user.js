@@ -31,7 +31,7 @@ const entrar = async (req, res) => {
     if (usuarioEncontrado) {
         const senhaCifrada = cifrarSenha(req.body.senha, usuarioEncontrado.salto);
         if (usuarioEncontrado.senha === senhaCifrada) {
-            res.json({ token: jwt.sign({email: usuarioEncontrado.email}, process.env.SEGREDO, {expiresIn: '2m'}) });
+            res.json({ token: jwt.sign({email: usuarioEncontrado.email}, process.env.SECRET, {expiresIn: '2m'}) });
         } else {
             res.status(401).json({ msg: 'acesso negado!' });
         }
@@ -44,8 +44,8 @@ const renovar = (req, res) => {
     const token = req.headers['authorization'];
     if(token){
         try {
-            const payload = jwt.verify(token, process.env.SEGREDO);
-            res.json({token: jwt.sign({email: payload.email}, process.env.SEGREDO)})
+            const payload = jwt.verify(token, process.env.SECRET);
+            res.json({token: jwt.sign({email: payload.email}, process.env.SECRET)})
         } catch (e) {
           res.status(401).json({msg: 'token invalido'})  
         };

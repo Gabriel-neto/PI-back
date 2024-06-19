@@ -17,6 +17,7 @@ const criar = async (req, res) => {
     const compra = await Compra.create(req.body);
     res.status(201).json(compra);
 } catch (error) {
+    console.log(error)
     if (error.name === 'ValidationError') {
         res.status(422).json({ msg: 'dados invalidos', errors: error.errors });
     } else {
@@ -53,7 +54,7 @@ const obter = async (req, res) => {
 const atualizar = async (req, res) => {
   const id = new mongoose.Types.ObjectId(req.params.id);
   const compra = await Compra.findByIdAndUpdate({_id: id}, req.body);
-  if (req.produto && req.preco){
+  if (compra){
     res.status(200).json(compra);
   } else {
     res.status(422).json({msg: "dados invalidos"})

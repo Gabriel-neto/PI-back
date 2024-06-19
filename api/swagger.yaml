@@ -3,8 +3,8 @@ info:
   title: API BlackBox
   version: 0.0.1
 tags:
-  - fornecedor
-  - compras
+  - name: fornecedor
+  - name: compras
 paths:
   /fornecedor:
     post:
@@ -16,14 +16,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FornecedorInput'
+              $ref: '#/components/schemas/ArrayOfFornecedores'
       responses:
         201:
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FornecedorInput'
+                $ref: '#/components/schemas/ArrayOfFornecedores'
         422:
           description: OK
           content:
@@ -42,7 +42,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FornecedorInput'
+                $ref: '#/components/schemas/ArrayOfFornecedores'
         400:
           description: OK
           content:
@@ -70,16 +70,19 @@ paths:
             type: string
       responses:
         200:
+          description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Fornecedor'
         400:
+          description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
         404:
+          description: OK
           content:
             application/json:
               schema:
@@ -100,24 +103,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FornecedorInput'
+              $ref: '#/components/schemas/ArrayOfFornecedores'
       responses:
         200:
+          description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Fornecedor'
         400:
+          description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
         404:
+          description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
         422:
+          description: OK
           content:
             application/json:
               schema:
@@ -136,14 +143,20 @@ paths:
             type: string
       responses:
         204:
-          content:
-        404:
+          description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
-    security:
-       - JWTAuth : [] 
+        404:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+        - JWTAuth : [] 
+
   /compras: 
     post: 
       tags:
@@ -178,11 +191,7 @@ paths:
     get: 
       tags:
         - compras
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Compra'
+      
       responses:
         200:
           description: Consultar todas as compras
@@ -198,8 +207,10 @@ paths:
         - compras
       parameters:
         - in: path
-          type: string
           name: id
+          required: true
+          schema:
+            type: string
       responses:
         200:
           description: Consultar uma compra
@@ -226,7 +237,9 @@ paths:
         - compras
       parameters:
         - in: path
-          type: string
+          required: true
+          schema:
+            type: string
           name: id
       requestBody:
         content:
@@ -265,7 +278,9 @@ paths:
         - compras
       parameters:
         - in: path
-          type: string
+          required: true
+          schema:
+            type: string
           name: id
       responses:
         204:
@@ -284,12 +299,159 @@ paths:
                 $ref: '#/components/schemas/Mensagem'
       security:
        - JWTAuth : [] 
+  /produtos:
+    post:
+      summary: Cria um novo produto 
+      tags:
+        - produto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+      responses:
+        201:
+          description: Produto não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+        422:
+          description: Produto não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+       - JWTAuth : [] 
+    get:
+      summary: Lista todos os produtos
+      tags:
+        - produto
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/ArrayOfProdutos'
+      security:
+       - JWTAuth : [] 
+  /produtos/{id}:
+    get:
+      summary: Busca o produto passando o ID
+      tags:
+        - produto
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+        404:
+          description: Produto não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+      security:
+      - JWTAuth : [] 
+    put:
+      tags:
+        - produto
+      summary: Edita o produto passando o ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Produto'
+        400:
+          description: Produto não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Mensagem'
+        404:
+          description: Produto não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Mensagem'
+        422:
+          description: Produto não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Mensagem'
+      security:
+       - JWTAuth : []                   
+    delete:
+      summary: Exclui o produto passando o ID
+      tags:
+        - produto
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: Produto não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        404:
+          description: Produto não encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+      security:
+      - JWTAuth : [] 
+components:
   securitySchemes:
     JWTAuth:
       type: apiKey
       in: header
       name: Authorization
   schemas:
+    ArrayOfProdutos:
+      type: array
+      items:
+        $ref: '#components/schemas/Produto'
+    Produto:
+      type: object
+      properties:
+        nome:
+          type: string
+        grupo:
+          type: string
+        preco:
+          type: number
+        quantidade:
+          type: number
     ArrayOfCompras:
       type: array
       items:
@@ -310,11 +472,25 @@ paths:
           type: string
         nf: 
           type: number
-    Mensagem:
+    ArrayOfFornecedores:
       type: object
       properties:
-        msg:
+        nome:
           type: string
+        empresa:
+          type: string
+        cnpj:
+          type: string
+        email:
+          type: string
+        telefone:
+          type: string
+      required:
+        - nome
+        - empresa
+        - cnpj
+        - email
+        - telefone
     Fornecedor:
       type: object
       properties:
@@ -336,23 +512,9 @@ paths:
         - cnpj
         - email
         - telefone
-
-    FornecedorInput:
-      type: object
-      properties:
-        nome:
-          type: string
-        empresa:
-          type: string
-        cnpj:
-          type: string
-        email:
-          type: string
-        telefone:
-          type: string
-      required:
-        - nome
-        - empresa
-        - cnpj
-        - email
-        - telefone
+    
+    Mensagem:
+        type: object
+        properties:
+          msg:
+            type: string
